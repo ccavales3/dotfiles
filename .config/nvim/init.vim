@@ -23,13 +23,14 @@ Plug 'preservim/nerdtree',                                                " http
 Plug 'tmhedberg/simpylfold'                                               " https://github.com/tmhedberg/SimpylFold
 Plug 'godlygeek/tabular'                                                  " https://github.com/godlygeek/tabular
 Plug 'tpope/vim-commentary'                                               " https://github.com/tpope/vim-commentary
-Plug 'ajmwagar/vim-deus'                                                  " https://github.com/ajmwagar/vim-deus
+Plug 'sainnhe/sonokai'                                                    " https://github.com/sainnhe/sonokai
 Plug 'tpope/vim-fugitive'                                                 " https://github.com/tpope/vim-fugitive
 Plug 'airblade/vim-gitgutter'                                             " https://github.com/airblade/vim-gitgutter
 Plug 'plasticboy/vim-markdown'                                            " https://github.com/plasticboy/vim-markdown
 Plug 'tpope/vim-rhubarb'                                                  " https://github.com/tpope/vim-rhubarb
 Plug 'tpope/vim-surround'                                                 " https://github.com/tpope/vim-surround
 " -------------------------------------
+" Plug 'ajmwagar/vim-deus'                                                  " https://github.com/ajmwagar/vim-deus
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}          " https://github.com/mg979/vim-visual-multi
 " Plug 'flazz/vim-colorschemes'                                " already using vim-deus
 " Plug 'tomtom/tcomment_vim' " gc comments
@@ -136,7 +137,7 @@ hi Search cterm=NONE ctermfg=Red ctermbg=LightCyan
 hi clear SpellBad
 hi SpellBad cterm=underline,bold ctermfg=red
 
-let g:netrw_liststyle=3
+let g:netrw_liststyle = 3
 let g:ctrlp_custom_ignore = 'node_modules'
 let g:NERDTreeWinSize = 50
 let g:NERDTreeShowBookmarks = 1
@@ -153,13 +154,13 @@ let g:jedi#use_splits_not_buffers = "right"
 
 " ALE
 " Check Python files with flake8 and pylint.
-let b:ale_linters = ['flake8', 'mypy', 'pylint']
+" let b:ale_linters = ['flake8', 'mypy', 'pylint']
 let g:ale_sign_error = '●'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%][%severity%](%code%): %s'
 " ALE pylint
-let g:ale_python_pylint_change_directory = 1
+" let g:ale_python_pylint_change_directory = 1
 " let g:ale_python_pylint_use_global = 0
 
 " fzf
@@ -192,15 +193,28 @@ let b:SimpylFold_fold_import = 0        " fold imports (buffer local)
 set foldlevel=1
 
 " vim-deus settings
-set t_Co=256
-set termguicolors
+" set t_Co=256
+" set termguicolors
+"
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"
+" set background=dark    " Setting dark mode
+" colorscheme deus
+" let g:deus_termcolors=256
 
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" sonokai
+if has('termguicolors')
+    set termguicolors
+endif
 
-set background=dark    " Setting dark mode
-colorscheme deus
-let g:deus_termcolors=256
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+" let g:sonokai_transparent_background = 1
+
+colorscheme sonokai
+let g:lightline = {}
+let g:lightline.colorscheme = 'sonokai'
 
 " vim-instant-markdown
 filetype plugin on
