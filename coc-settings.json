@@ -1,0 +1,32 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "vue"
+  ],
+  "coc.preferences.formatOnType": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.errorSign": "•",
+  "diagnostic.hintSign": "•",
+  "diagnostic.infoSign": "•",
+  "diagnostic.warningSign": "•",
+  "eslint.probe": [
+    "html",
+    "javascript",
+    "javascriptreact",
+    "markdown",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "prettier.eslintIntegration": true,
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "vetur.format.defaultFormatter.html": "prettier",
+  "vetur.format.defaultFormatter.css": "prettier",
+  "vetur.format.defaultFormatter.js": "prettier-eslint"
+}
