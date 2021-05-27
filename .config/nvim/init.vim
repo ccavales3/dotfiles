@@ -373,21 +373,21 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent>,a :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent>,e :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent>,c :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent>,o :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent>,s :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent>,j :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent>,k :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent>,p :<C-u>CocListResume<CR>
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
@@ -428,22 +428,22 @@ let g:NERDTreeWinSize = 50
 let g:NERDTreeShowBookmarks = 1
 
 " deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 "Jedi
 " disable autocompletion, cause we use deoplete for completion
-let g:jedi#completions_enabled = 0
+" let g:jedi#completions_enabled = 0
 
 " open the go-to function in split, not another buffer
-let g:jedi#use_splits_not_buffers = "right"
+" let g:jedi#use_splits_not_buffers = "right"
 
 " ALE
 " Check Python files with flake8 and pylint.
 " let b:ale_linters = ['flake8', 'mypy', 'pylint']
-let g:ale_sign_error = '●'
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%][%severity%](%code%): %s'
+" let g:ale_sign_error = '●'
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '[%linter%][%severity%](%code%): %s'
 " ALE pylint
 " let g:ale_python_pylint_change_directory = 1
 " let g:ale_python_pylint_use_global = 0
@@ -465,7 +465,7 @@ let g:ale_echo_msg_format = '[%linter%][%severity%](%code%): %s'
 "                \ 'highlight': 'Comment',
 "                \ 'rounded': v:false } }
 "else
-"    let g:fzf_layout = { "window": "silent botright 16split enew" }
+"    let g:fzf_layout = { 'window': 'silent botright 16split enew' }
 "endif
 
 "nerdtree-git-plugin
@@ -495,8 +495,8 @@ set foldlevel=1
 " set t_Co=256
 " set termguicolors
 "
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" let &t_8f = '\<Esc>[38;2;%lu;%lu;%lum'
+" let &t_8b = '\<Esc>[48;2;%lu;%lu;%lum'
 "
 " set background=dark    " Setting dark mode
 " colorscheme deus
