@@ -145,7 +145,7 @@ try
   "
   call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
   
-  " Use ripgrep in place of "grep"
+  " Use ripgrep in place of 'grep'
   call denite#custom#var('grep', 'command', ['rg'])
   
   " Custom options for ripgrep
@@ -308,7 +308,9 @@ let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-git',
       \ 'coc-json',
+      \ 'coc-markdownlint',
       \ 'coc-prettier',
+      \ 'coc-python',
       \ 'coc-snippets',
       \ 'coc-tsserver',
       \ 'coc-vetur'
@@ -319,23 +321,23 @@ set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? '\<C-n>' :
+"       \ <SID>check_back_space() ? '\<TAB>' :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? '\<C-p>' : '\<C-h>'
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? '\<C-y>' : '\<C-g>u\<CR>'
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -383,11 +385,11 @@ nnoremap <silent>,o :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent>,s :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent>,j :<C-u>CocNext<CR>
+nnoremap <silent>,j :<C-u>CocNext<cr>
 " Do default action for previous item.
-nnoremap <silent>,k :<C-u>CocPrev<CR>
+nnoremap <silent>,k :<C-u>CocPrev<cr>
 " Resume latest coc list
-nnoremap <silent>,p :<C-u>CocListResume<CR>
+nnoremap <silent>,p :<C-u>CocListResume<cr>
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
@@ -396,18 +398,21 @@ nnoremap <silent>,p :<C-u>CocListResume<CR>
 nnoremap <silent><leader>md :MarkdownPreview<cr>
 nnoremap <silent><leader>ms :MarkdownPreviewStop<cr>
 " tabularize
-if exists(":Tabularize")
+if exists(':Tabularize')
   nmap <Leader>a= :Tabularize /=<CR>
   vmap <Leader>a= :Tabularize /=<CR>
   nmap <Leader>a: :Tabularize /:\zs<CR>
   vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
-" vim-commentary
-vmap <c-_> gc<cr> " comment out highlighting
+"" vim-commentary
+" comment out highlighting
+vmap <c-_> gc<cr>
 " vim-gitgutter
 nnoremap <silent><leader>gg :GitGutterLineHighlightsToggle<cr>
-nmap <silent> <c-,> ]c<cr> " jump to next hunk
-nmap <silent> <c-.> [c<cr> " jump to previous hunk
+" jump to next hunk
+nmap <silent> <c-,> ]c<cr>
+" jump to previous hunk
+nmap <silent> <c-.> [c<cr>
 
 "" ctrlp
 "let g:ctrlp_map = '<c-p>'
@@ -435,7 +440,7 @@ let g:NERDTreeShowBookmarks = 1
 " let g:jedi#completions_enabled = 0
 
 " open the go-to function in split, not another buffer
-" let g:jedi#use_splits_not_buffers = "right"
+" let g:jedi#use_splits_not_buffers = 'right'
 
 " ALE
 " Check Python files with flake8 and pylint.
@@ -484,11 +489,16 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 " simpylfold
 " zm - fold all, zr - open all, zc - fold 1, l - open fold
-let g:SimpylFold_docstring_preview = 0  " preview docstring in fold text
-let g:SimpylFold_fold_docstring	 = 0    " fold doctrings
-let b:SimpylFold_fold_docstring = 0     " fold doctrings (buffer local)
-let g:SimpylFold_fold_import = 0        " fold imports
-let b:SimpylFold_fold_import = 0        " fold imports (buffer local)
+" preview docstring in fold text
+let g:SimpylFold_docstring_preview = 0
+" fold doctrings
+let g:SimpylFold_fold_docstring	 = 0
+" fold doctrings (buffer local)
+let b:SimpylFold_fold_docstring = 0
+" fold imports
+let g:SimpylFold_fold_import = 0
+" fold imports (buffer local)
+let b:SimpylFold_fold_import = 0
 set foldlevel=1
 
 " vim-deus settings
@@ -523,8 +533,13 @@ au FileType markdown setl shell=bash\ -i
 " let g:ag_working_path_mode="r"
 
 " ctrl+c to toggle highlight.
-let hlstate=0
-nnoremap <c-c> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+" let hlstate=0
+" nnoremap <c-c> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+" === Search shorcuts === "
+"   <leader>h - Find and replace
+"   <leader>/ - Claer highlighted search terms while preserving history
+map <leader>h :%s///<left><left>
+nmap <silent> <leader>/ :nohlsearch<CR>
 
 " refresh vimrc
 augroup reload_vimrc
