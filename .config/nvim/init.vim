@@ -295,13 +295,19 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " === key mappings === "
 "   <leader>dd    - Jump to definition of current symbol
+"   <leader>dy    - Jump to type definition of current symbol
 "   <leader>dr    - Jump to references of current symbol
 "   <leader>dj    - Jump to implementation of current symbol
 "   <leader>ds    - Fuzzy search current project symbols
 nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dy <Plug>(coc-type-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 let g:coc_global_extensions = [
       \ 'coc-css',
@@ -310,7 +316,7 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-markdownlint',
       \ 'coc-prettier',
-      \ 'coc-python',
+      \ 'coc-pyright',
       \ 'coc-snippets',
       \ 'coc-tsserver',
       \ 'coc-vetur'
@@ -338,16 +344,6 @@ set signcolumn=yes
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 " inoremap <expr> <cr> pumvisible() ? '\<C-y>' : '\<C-g>u\<CR>'
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>

@@ -1,0 +1,8 @@
+[alias]
+	br = branch
+	ci = commit
+	co = checkout
+	hist = log --pretty=format:"%h %s" --graph
+	last = log -1 HEAD
+	st = status
+	unstage = reset HEAD --

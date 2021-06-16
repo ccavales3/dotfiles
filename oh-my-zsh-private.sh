@@ -1,13 +1,17 @@
 # Aliases
+alias ca="conda activate"
+alias gitconfig="nvim ~/.gitconfig"
+alias npmrc="nvim ~/.npmrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh/oh-my-zsh.sh"
 alias ohmyzshp="nvim ~/.oh-my-zsh/oh-my-zsh-private.sh"
 alias t="tmux"
 alias tcfg="nvim ~/.tmux.conf"
-alias vimrc="nvim ~/.config/nvim/init.vim"
+alias vimrc="nvim ~/Developer/dotfiles/.config/nvim/init.vim"
+alias zshcfg="nvim ~/.zshrc"
+
 alias vxsv="~/Developer/ap139709-voicex-service"
 alias vxui="~/Developer/ap139709-voicex-ui"
 alias vxin="~/Developer/ap137928-voice-innovation-ui"
-alias zshcfg="nvim ~/.zshrc"
 
 # auto suggestion format
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"

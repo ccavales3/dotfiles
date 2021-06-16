@@ -8,6 +8,10 @@
     "typescript.tsx",
     "vue"
   ],
+  "markdownlint.config": {
+    "default": true,
+    "line_length": false
+  },
   "coc.preferences.formatOnType": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "•",
