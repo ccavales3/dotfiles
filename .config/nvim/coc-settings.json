@@ -8,10 +8,6 @@
     "typescript.tsx",
     "vue"
   ],
-  "markdownlint.config": {
-    "default": true,
-    "line_length": false
-  },
   "coc.preferences.formatOnType": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "•",
@@ -27,10 +23,21 @@
     "typescriptreact",
     "vue"
   ],
+  "json.enable": true,
+  "json.format.enable": true,
+  "markdownlint.config": {
+    "default": true,
+    "line_length": false
+  },
   "prettier.eslintIntegration": true,
+  "prettier.singleQuote": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pylintEnabled": true,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "vetur.format.defaultFormatter.html": "prettier",
   "vetur.format.defaultFormatter.css": "prettier",
-  "vetur.format.defaultFormatter.js": "prettier-eslint"
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "snippets.ultisnips.pythonPrompt": false
 }
