@@ -1,5 +1,6 @@
 " need to install below for python setup----------------------
 " pip install pynvim
+" let g:python3_host_prog to correct python path
 " pip install jedi
 " for fzf to work--------------------------
 " brew install the_silver_searcher
@@ -10,15 +11,16 @@ call plug#begin('~/.config/nvim/plugged') " https://github.com/junegunn/vim-plug
 "   UpdateRemotePlugins
 " endfunction
 " -------------------------------------
-" Plug 'dense-analysis/ale'                                                 " https://github.com/dense-analysis/ale
-" Plug 'zchee/deoplete-jedi'                                                " https://github.com/deoplete-plugins/deoplete-jedi
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }             " https://github.com/Shougo/deoplete.nvim 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}                             " https://github.com/neoclide/coc.nvim
+" Plug 'dense-analysis/ale'                                               " https://github.com/dense-analysis/ale
+" Plug 'zchee/deoplete-jedi'                                              " https://github.com/deoplete-plugins/deoplete-jedi
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }           " https://github.com/Shougo/deoplete.nvim 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}                           " https://github.com/neoclide/coc.nvim
+" Plug 'neoclide/coc.nvim'                                                " https://github.com/neoclide/coc.nvim
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }               " https://github.com/Shougo/denite.nvim
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                       " https://github.com/junegunn/fzf
-" Plug 'junegunn/fzf.vim'                                                   " https://github.com/junegunn/fzf.vim
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                     " https://github.com/junegunn/fzf
+" Plug 'junegunn/fzf.vim'                                                 " https://github.com/junegunn/fzf.vim
 Plug 'junegunn/gv.vim'                                                    " https://github.com/junegunn/gv.vim
-" Plug 'davidhalter/jedi-vim'                                               " https://github.com/davidhalter/jedi-vim
+" Plug 'davidhalter/jedi-vim'                                             " https://github.com/davidhalter/jedi-vim
 Plug 'itchyny/lightline.vim'                                              " https://github.com/itchyny/lightline.vim
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }  " https://github.com/iamcco/markdown-preview.nvim
 Plug 'preservim/nerdtree',                                                " https://github.com/preservim/nerdtree
@@ -28,11 +30,13 @@ Plug 'tmhedberg/simpylfold'                                               " http
 Plug 'godlygeek/tabular'                                                  " https://github.com/godlygeek/tabular
 Plug 'tpope/vim-commentary'                                               " https://github.com/tpope/vim-commentary
 Plug 'sainnhe/sonokai'                                                    " https://github.com/sainnhe/sonokai
+Plug 'sheerun/vim-polyglot'                                               " https://github.com/sheerun/vim-polyglot
 Plug 'tpope/vim-fugitive'                                                 " https://github.com/tpope/vim-fugitive
 Plug 'airblade/vim-gitgutter'                                             " https://github.com/airblade/vim-gitgutter
 Plug 'plasticboy/vim-markdown'                                            " https://github.com/plasticboy/vim-markdown
 Plug 'tpope/vim-rhubarb'                                                  " https://github.com/tpope/vim-rhubarb
 Plug 'tpope/vim-surround'                                                 " https://github.com/tpope/vim-surround
+Plug 'tpope/vim-obsession'                                                " https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_vim_and_neovim_sessions.md
 " -------------------------------------
 " Plug 'ajmwagar/vim-deus'                                                  " https://github.com/ajmwagar/vim-deus
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}          " https://github.com/mg979/vim-visual-multi
@@ -47,6 +51,24 @@ Plug 'tpope/vim-surround'                                                 " http
 call plug#end()
 "
 " -------------------------------------
+" sonokai
+if has('termguicolors')
+    set termguicolors
+endif
+
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+" let g:sonokai_disable_italic_comment = 1
+" let g:sonokai_transparent_background = 1
+
+colorscheme sonokai
+let g:lightline = {}
+let g:lightline.colorscheme = 'sonokai'
+
+let g:sonokai_cursor = 'green'
+
+" disable mouse in vim
+set mouse=
 
 hi VertSplit ctermfg=235 ctermbg=NONE
 set fillchars+=vert:│
@@ -61,6 +83,10 @@ set number            " display line number
 " set tabstop=2         " set tab to 2 spaces
 " set textwidth=120     " set textwidth
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
+
+" set python executable path
+" let g:python3_host_prog = '/usr/local/Caskroom/miniconda/base/envs/maggport39/bin/python3'
+let g:python3_host_prog = '/opt/homebrew/Caskroom/miniconda/base/bin/python'
 
 " Automatic syntax highlighting for files
 au BufRead,BufNewFile *.sbt           set filetype=scala
@@ -143,7 +169,7 @@ try
   "   --glob:  Include or exclues files for searching that match the given glob
   "            (aka ignore .git files)
   "
-  call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+  call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git', "--ignore='package-lock.json'"])
   
   " Use ripgrep in place of 'grep'
   call denite#custom#var('grep', 'command', ['rg'])
@@ -290,6 +316,10 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
+" Use <Tab> and <S-Tab> to navigate the completion list:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -306,8 +336,10 @@ nmap <silent> <leader>dj <Plug>(coc-implementation)
 nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>< <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>> <Plug>(coc-diagnostic-next)
 
 let g:coc_global_extensions = [
       \ 'coc-css',
@@ -331,6 +363,7 @@ set signcolumn=yes
 "       \ pumvisible() ? '\<C-n>' :
 "       \ <SID>check_back_space() ? '\<TAB>' :
 "       \ coc#refresh()
+" test. might need to delete
 " inoremap <expr><S-TAB> pumvisible() ? '\<C-p>' : '\<C-h>'
 
 " function! s:check_back_space() abort
@@ -507,19 +540,6 @@ set foldlevel=1
 " set background=dark    " Setting dark mode
 " colorscheme deus
 " let g:deus_termcolors=256
-
-" sonokai
-if has('termguicolors')
-    set termguicolors
-endif
-
-let g:sonokai_style = 'andromeda'
-let g:sonokai_enable_italic = 1
-" let g:sonokai_transparent_background = 1
-
-colorscheme sonokai
-let g:lightline = {}
-let g:lightline.colorscheme = 'sonokai'
 
 " vim-instant-markdown
 filetype plugin on
